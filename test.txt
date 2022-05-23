@@ -1,1 +1,14 @@
-11111111
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name local-tp6_swoole.com;
+
+    location / {
+        root   /www/php74/tp6_swoole/public/static;
+        index  index.html index.htm;
+        if (!-e $request_filename) {
+            proxy_pass http://172.18.0.10:9501;
+        }
+    }
+
+}
